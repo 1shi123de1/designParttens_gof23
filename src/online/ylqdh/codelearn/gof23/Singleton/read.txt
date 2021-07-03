@@ -1,0 +1,2 @@
+单例模式算是设计模式中最容易理解，也是最容易手写代码的模式了吧。但是其中的坑却不少，所以也常作为面试题来考。
+文字版可以看: http://wuchong.me/blog/2014/08/28/how-to-correctly-write-singleton-pattern/
