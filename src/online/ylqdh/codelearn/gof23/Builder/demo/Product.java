@@ -13,12 +13,8 @@ public class Product {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "builderA='" + builderA + '\'' +
-                ", builderB='" + builderB + '\'' +
-                ", builderC='" + builderC + '\'' +
-                ", builderD='" + builderD + '\'' +
-                '}';
+        return "Product{" + "builderA='" + builderA + '\'' + ", builderB='" + builderB + '\'' + ", builderC='"
+            + builderC + '\'' + ", builderD='" + builderD + '\'' + '}';
     }
 
     public String getBuilderA() {

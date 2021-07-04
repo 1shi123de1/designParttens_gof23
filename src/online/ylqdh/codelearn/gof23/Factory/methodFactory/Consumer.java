@@ -1,7 +1,7 @@
 package online.ylqdh.codelearn.gof23.Factory.methodFactory;
 
 /**
- * @Description:  消费者，消费car
+ * @Description: 消费者，消费car
  * @author: yeliqun
  * @date 2021-07-04
  **/

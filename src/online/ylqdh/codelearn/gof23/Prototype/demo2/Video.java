@@ -3,12 +3,11 @@ package online.ylqdh.codelearn.gof23.Prototype.demo2;
 import java.util.Date;
 
 /**
- * @Description: 原型类
- *               实现类对象的可克隆： 1. 实现一个接口 Cloneable;  2. 重写一个方法 clone
+ * @Description: 原型类 实现类对象的可克隆： 1. 实现一个接口 Cloneable; 2. 重写一个方法 clone
  * @author: yeliqun
  * @date 2021-07-05
  **/
-public class Video implements Cloneable{
+public class Video implements Cloneable {
     private String tile;
     private Date date;
 
@@ -18,8 +17,8 @@ public class Video implements Cloneable{
 
         // 实现深克隆的操作
         // (序列化、反序列化也可以实现深克隆)
-        Video v = (Video) obj;
-        v.date = (Date) this.date.clone();  // 将属性也进行克隆,
+        Video v = (Video)obj;
+        v.date = (Date)this.date.clone(); // 将属性也进行克隆,
 
         return obj;
     }
@@ -33,10 +32,7 @@ public class Video implements Cloneable{
 
     @Override
     public String toString() {
-        return "Video{" +
-                "tile='" + tile + '\'' +
-                ", date=" + date +
-                '}';
+        return "Video{" + "tile='" + tile + '\'' + ", date=" + date + '}';
     }
 
     public String getTile() {

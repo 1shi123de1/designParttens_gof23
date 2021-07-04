@@ -5,7 +5,7 @@ package online.ylqdh.codelearn.gof23.Factory.abstractFactory;
  * @author: yeliqun
  * @date 2021-07-04
  **/
-public class HuaweiFactory implements IProductFactory{
+public class HuaweiFactory implements IProductFactory {
 
     @Override
     public IPhoneProduct getIPhoneProduct() {

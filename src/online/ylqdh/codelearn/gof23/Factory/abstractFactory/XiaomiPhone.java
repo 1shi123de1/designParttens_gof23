@@ -5,7 +5,7 @@ package online.ylqdh.codelearn.gof23.Factory.abstractFactory;
  * @author: yeliqun
  * @date 2021-07-04
  **/
-public class XiaomiPhone implements IPhoneProduct{
+public class XiaomiPhone implements IPhoneProduct {
     @Override
     public void start() {
         System.out.println("小米手机开机");

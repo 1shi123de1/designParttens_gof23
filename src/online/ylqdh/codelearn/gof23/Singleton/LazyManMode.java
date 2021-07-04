@@ -28,16 +28,15 @@ public class LazyManMode {
 
     // 单线程下没有问题。
     // 缺点： 多线程下，会多次实例化.
-    //       理想情况： 应该只有一个线程的实例会被实例化，其余线程只要拿到实例直接用就可以了
-//    public static void main(String[] args) {
-//        for (int i = 0; i < 10; i++) {
-//            new Thread(() -> {
-//                LazyManMode.getInstance();
-//            }).start();
-//
-//        }
-//    }
-
+    // 理想情况： 应该只有一个线程的实例会被实例化，其余线程只要拿到实例直接用就可以了
+    // public static void main(String[] args) {
+    // for (int i = 0; i < 10; i++) {
+    // new Thread(() -> {
+    // LazyManMode.getInstance();
+    // }).start();
+    //
+    // }
+    // }
 
     // 改进. 加锁
     // 双重检测锁模式的 懒汉式单例 --> DCL懒汉式
@@ -48,12 +47,8 @@ public class LazyManMode {
             synchronized (LazyManMode.class) {
                 if (lazyMan2 == null) {
                     /**
-                     * 这行代码不是原子性的操作,涉及三个步骤
-                     * 1. 分配内存空间
-                     * 2. 执行构造方法，初始化对象
-                     * 3. 把这个对象指向这个空间
-                     * 那么在多线程下，这3步会乱序执行，所有最后可能拿到的lazyMan2这个实例还是空的
-                     * 解决方法： 在声明的时候加上volatile关键词
+                     * 这行代码不是原子性的操作,涉及三个步骤 1. 分配内存空间 2. 执行构造方法，初始化对象 3. 把这个对象指向这个空间
+                     * 那么在多线程下，这3步会乱序执行，所有最后可能拿到的lazyMan2这个实例还是空的 解决方法： 在声明的时候加上volatile关键词
                      */
                     lazyMan2 = new LazyManMode();
                 }
@@ -62,12 +57,11 @@ public class LazyManMode {
         return lazyMan2;
     }
 
-
     // 反射可以破坏DCL的懒汉式单例
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         LazyManMode lazyMan = LazyManMode.getInstance2();
 
-        Constructor<LazyManMode> declaredConstructor =  LazyManMode.class.getDeclaredConstructor(null);
+        Constructor<LazyManMode> declaredConstructor = LazyManMode.class.getDeclaredConstructor(null);
         declaredConstructor.setAccessible(true);
         LazyManMode lazyMan2 = declaredConstructor.newInstance();
 
@@ -77,38 +71,20 @@ public class LazyManMode {
 
         // 解决方式是在构造方法中加一把锁，当实例不为空又来构造实例就抛异常
         /**
-         * private LazyManMode() {
-         *         synchronized (LazyManMode.class) {
-         *             if (lazyMan2 != null) {
-         *                 throw new RuntimeException("不要用反射获取实例");
-         *             }
-         *         }
-         *     }
+         * private LazyManMode() { synchronized (LazyManMode.class) { if (lazyMan2 != null) { throw new
+         * RuntimeException("不要用反射获取实例"); } } }
          *
-         *     但是使用了这种方式，如果两个实例都是用反射获取的，就无用了
-         *     LazyManMode lazyMan3 = declaredConstructor.newInstance();
-         *     LazyManMode lazyMan4 = declaredConstructor.newInstance();
-         *     这两个实例还是能正常创建，且不是同一个实例
+         * 但是使用了这种方式，如果两个实例都是用反射获取的，就无用了 LazyManMode lazyMan3 = declaredConstructor.newInstance(); LazyManMode lazyMan4
+         * = declaredConstructor.newInstance(); 这两个实例还是能正常创建，且不是同一个实例
          *
-         *     这种情况的解决方式： 在构造方法中加锁的时候，用一个额外的变量来控制，外面(反编译除外)不知道有这个变量
+         * 这种情况的解决方式： 在构造方法中加锁的时候，用一个额外的变量来控制，外面(反编译除外)不知道有这个变量
          *
-         *     private static boolean ylq = flase;
-         *     private LazyManMode() {
-         *          synchronized (LazyManMode.class) {
-         *              if (ylq == false) {
-         *                   ylq = true;
-         *              } else {
-         *                  throw new RuntimeException("不要用反射获取实例");
-         *              }
-         *          }
-         *     }
+         * private static boolean ylq = flase; private LazyManMode() { synchronized (LazyManMode.class) { if (ylq ==
+         * false) { ylq = true; } else { throw new RuntimeException("不要用反射获取实例"); } } }
          *
-         *     这样就保证了当用反射获取两次实例时，会报错
+         * 这样就保证了当用反射获取两次实例时，会报错
          *
-         *     但是道高一尺魔高一丈！！
-         *     还可以通过反射来修改变量ylq的值！！！
-         *     在第二次创建实例前，把标志位ylq的值改为false
-         *     解决方法： 枚举单例
+         * 但是道高一尺魔高一丈！！ 还可以通过反射来修改变量ylq的值！！！ 在第二次创建实例前，把标志位ylq的值改为false 解决方法： 枚举单例
          *
          */
 

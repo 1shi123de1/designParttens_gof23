@@ -8,7 +8,7 @@ package online.ylqdh.codelearn.gof23.Factory.abstractFactory;
 public class ConsumerClient {
     public static void main(String[] args) {
         System.out.println("----------小米产品---------------");
-        XiaomiFactory xiaomiFactory = new XiaomiFactory();  // 小米工厂实例
+        XiaomiFactory xiaomiFactory = new XiaomiFactory(); // 小米工厂实例
         IPhoneProduct xiaomiPhone = xiaomiFactory.getIPhoneProduct();
         xiaomiPhone.call();
         xiaomiPhone.start();
@@ -20,7 +20,6 @@ public class ConsumerClient {
         xiaomiRouter.shutdown();
         xiaomiRouter.wifi();
         xiaomiRouter.setting();
-
 
         System.out.println("---------华为产品-----------------");
         HuaweiFactory huaweiFactory = new HuaweiFactory();

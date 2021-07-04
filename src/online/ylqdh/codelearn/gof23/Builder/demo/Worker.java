@@ -5,9 +5,10 @@ package online.ylqdh.codelearn.gof23.Builder.demo;
  * @author: yeliqun
  * @date 2021-07-04
  **/
-public class Worker extends Builder{
+public class Worker extends Builder {
 
     private Product product = null;
+
     public Worker() {
         product = new Product();
     }

@@ -12,7 +12,7 @@ public class test {
         Date date = new Date();
         Video v1 = new Video("克隆", date);
 
-        Video v2 = (Video) v1.clone();  // 克隆对象
+        Video v2 = (Video)v1.clone(); // 克隆对象
 
         // 可以看到v2的属性和v1一样，是从v1克隆出来的，而且hashcode不一样
         System.out.println("v1 --> " + v1 + "\t v1.hashcode: " + v1.hashCode());

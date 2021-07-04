@@ -5,7 +5,7 @@ package online.ylqdh.codelearn.gof23.Factory.abstractFactory;
  * @author: yeliqun
  * @date 2021-07-04
  **/
-public class XiaomiRouter implements IRouterProduct{
+public class XiaomiRouter implements IRouterProduct {
     @Override
     public void start() {
         System.out.println("小米路由器开机");

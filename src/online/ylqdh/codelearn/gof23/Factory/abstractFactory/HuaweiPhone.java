@@ -5,7 +5,7 @@ package online.ylqdh.codelearn.gof23.Factory.abstractFactory;
  * @author: yeliqun
  * @date 2021-07-04
  **/
-public class HuaweiPhone implements IPhoneProduct{
+public class HuaweiPhone implements IPhoneProduct {
     @Override
     public void start() {
         System.out.println("华为手机开机");

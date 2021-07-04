@@ -5,7 +5,10 @@ package online.ylqdh.codelearn.gof23.Factory.abstractFactory;
  */
 interface IPhoneProduct {
     void start();
+
     void shutdown();
+
     void call();
+
     void setting();
 }
